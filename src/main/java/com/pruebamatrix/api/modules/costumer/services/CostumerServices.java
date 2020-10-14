@@ -21,6 +21,4 @@ public interface CostumerServices {
 	public void deleteUserById(Long id);
 	
 	public List<Costumer> getAllCostumers();
-	
-	
 }
