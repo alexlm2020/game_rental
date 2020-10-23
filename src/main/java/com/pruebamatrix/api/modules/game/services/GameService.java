@@ -2,31 +2,22 @@ package com.pruebamatrix.api.modules.game.services;
 
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import com.pruebamatrix.api.Utils.service.UtilsService;
 import com.pruebamatrix.api.modules.game.model.Game;
-import com.pruebamatrix.api.modules.game.repository.GameRepository;
+import com.pruebamatrix.api.modules.game.model.GameRequest;
 
-@Service
-public class GameService {
+public interface GameService {
 
-	@Autowired
-	private GameRepository gameRepository;
+	public Iterable<Game> findAll();
 	
-	@Autowired
-	private UtilsService utilsService;
+	public Page<Game> findAll(Pageable pageable);
 	
-	public Game save (Game game) {
-
-		game.setLastUpdate(utilsService.getTime());
-		
-		return gameRepository.save(game);
-	}
+	public Optional<Game> findById(Long idGame);
 	
-	public Optional<Game> getGame(Long idGame) {
-		return gameRepository.findById(idGame);
-	}
+	public Game save(GameRequest game);
+	
+	public void deleteUserById(Long idGame);
 	
 }
