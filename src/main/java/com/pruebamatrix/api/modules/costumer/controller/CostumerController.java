@@ -1,6 +1,7 @@
 package com.pruebamatrix.api.modules.costumer.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +30,9 @@ public class CostumerController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(costumerServices.save(costumer));	
 	}
 	
-	@GetMapping("/getById/{id}")
-	public ResponseEntity<?> read (@PathVariable(value = "id") Long idCostumer) {
-		Optional<Costumer> oCostumer = costumerServices.findById(idCostumer);
+	@PostMapping("/getById")
+	public ResponseEntity<?> read (@RequestBody Map<String, String> request) {
+		Optional<Costumer> oCostumer = costumerServices.findById(Long.parseLong(request.get("idCostumer").toString()));
 		if (!oCostumer.isPresent()) {
 			return ResponseEntity.notFound().build();
 		}
@@ -39,13 +40,22 @@ public class CostumerController {
 		return ResponseEntity.ok(oCostumer);
 	}
 	
-	@GetMapping("/getAll")
-	public ResponseEntity<?> read () {
+	@PostMapping("/getAll")
+	public ResponseEntity<?> getAll () {
 		List<Costumer> oCostumers = costumerServices.getAllCostumers();
 		if (oCostumers.size() == 0) {
 			return ResponseEntity.notFound().build();
 		}
 		return ResponseEntity.ok(oCostumers);
+	}
+	
+	@PostMapping("/getcostumerbyidentification")
+	public ResponseEntity<?> getCostumerByIdentification (@RequestBody Map<String, String> request ) {
+		Costumer oCostumer = costumerServices.getCostumerByIdentification(request.get("identification").toString());
+		if (oCostumer == null) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.status(HttpStatus.CREATED).body(costumerServices.save(oCostumer));
 	}
 	
 }

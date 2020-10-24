@@ -3,6 +3,7 @@ package com.pruebamatrix.api.modules.costumer.model;
 import java.io.Serializable;
 import java.sql.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,6 +29,9 @@ public class Costumer implements Serializable{
 	private String address;
 	private String email;
 	private Date birthDate;
+	private String identification;
+	@Column(name="ID_TYPEIDENTIFICATION")
+	private Long idTypeIdentification;
 	
 	public Long getIdCostumer() {
 		return idCostumer;
@@ -76,6 +80,18 @@ public class Costumer implements Serializable{
 	}
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
+	}
+	public String getIdentification() {
+		return identification;
+	}
+	public void setIdentification(String identification) {
+		this.identification = identification;
+	}
+	public Long getIdTypeIdentification() {
+		return idTypeIdentification;
+	}
+	public void setIdTypeIdentification(Long idTypeIdentification) {
+		this.idTypeIdentification = idTypeIdentification;
 	}
 	@Override
 	public String toString() {
