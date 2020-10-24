@@ -56,4 +56,9 @@ public class CostumerServicesImp implements CostumerServices{
 		costumerRepository.deleteById(id);
 	}
 
+	@Override
+	public Costumer getCostumerByIdentification(String identification) {
+		return costumerRepository.getCostumerByIdentification(identification);
+	}
+
 }
