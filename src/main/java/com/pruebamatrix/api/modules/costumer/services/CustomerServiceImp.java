@@ -9,44 +9,44 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.pruebamatrix.api.modules.costumer.model.Costumer;
-import com.pruebamatrix.api.modules.costumer.repository.CostumerRepository;
+import com.pruebamatrix.api.modules.costumer.model.Customer;
+import com.pruebamatrix.api.modules.costumer.repository.CustomerRepository;
 
 @Service
-public class CostumerServicesImp implements CostumerServices{
+public class CustomerServiceImp implements CustomerService{
 
 	@Autowired
-	private CostumerRepository costumerRepository;
+	private CustomerRepository costumerRepository;
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Iterable<Costumer> findAll() {
+	public Iterable<Customer> findAll() {
 		return costumerRepository.findAll();
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public Page<Costumer> findAll(Pageable pageable) {
+	public Page<Customer> findAll(Pageable pageable) {
 		
 		return costumerRepository.findAll(pageable);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public Optional<Costumer> findById(Long id) {
+	public Optional<Customer> findById(Long id) {
 		
 		return costumerRepository.findById(id);
 	}
 	
 	@Override
 	@Transactional(readOnly = true)
-	public List<Costumer> getAllCostumers() {		
+	public List<Customer> getAllCostumers() {		
 		return costumerRepository.getAllCostumers();
 	}
 
 	@Override
 	@Transactional
-	public Costumer save(Costumer costumer) {		
+	public Customer save(Customer costumer) {		
 		return costumerRepository.save(costumer);
 	}
 
@@ -57,7 +57,7 @@ public class CostumerServicesImp implements CostumerServices{
 	}
 
 	@Override
-	public Costumer getCostumerByIdentification(String identification) {
+	public Customer getCostumerByIdentification(String identification) {
 		return costumerRepository.getCostumerByIdentification(identification);
 	}
 

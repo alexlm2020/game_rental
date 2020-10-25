@@ -11,8 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="COSTUMERS")
-public class Costumer implements Serializable{
+@Table(name="CUSTOMERS")
+public class Customer implements Serializable{
 	
 	/**
 	 * 
@@ -21,7 +21,7 @@ public class Costumer implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idCostumer;
+	private Long idCustomer;
 	private String name;
 	private String lastName;
 	private String secondLastName;
@@ -33,11 +33,11 @@ public class Costumer implements Serializable{
 	@Column(name="ID_TYPEIDENTIFICATION")
 	private Long idTypeIdentification;
 	
-	public Long getIdCostumer() {
-		return idCostumer;
+	public Long getIdCustomer() {
+		return idCustomer;
 	}
-	public void setIdCostumer(Long idCostumer) {
-		this.idCostumer = idCostumer;
+	public void setIdCustomer(Long idCustomer) {
+		this.idCustomer = idCustomer;
 	}
 	public String getName() {
 		return name;
@@ -95,7 +95,7 @@ public class Costumer implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "Costumer [idCostumer=" + idCostumer + ", name=" + name + ", lastName=" + lastName + ", secondLastName="
+		return "Costumer [idCostumer=" + idCustomer + ", name=" + name + ", lastName=" + lastName + ", secondLastName="
 				+ secondLastName + ", phone=" + phone + ", address=" + address + ", email=" + email + ", birthDate="
 				+ birthDate + "]";
 	}

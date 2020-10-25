@@ -7,14 +7,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.pruebamatrix.api.modules.costumer.model.Costumer;
+import com.pruebamatrix.api.modules.costumer.model.Customer;
 
 @Repository
-public interface CostumerRepository extends JpaRepository<Costumer,Long>{
+public interface CustomerRepository extends JpaRepository<Customer,Long>{
 	
 	@Query(value = "SELECT * FROM COSTUMERS", nativeQuery = true)
-    List<Costumer> getAllCostumers();
+    List<Customer> getAllCostumers();
 	
 	@Query(value = "SELECT * FROM COSTUMERS c WHERE c.IDENTIFICATION = :identification", nativeQuery = true)
-    Costumer getCostumerByIdentification(@Param("identification") String identification );
+    Customer getCostumerByIdentification(@Param("identification") String identification );
 }
