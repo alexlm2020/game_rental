@@ -4,5 +4,5 @@ import com.pruebamatrix.api.modules.gameTecnology.model.GameTecnology;
 
 public interface GameTecnologyService {
 	
-	public GameTecnology save(GameTecnology game);
+	public GameTecnology save(GameTecnology game) throws Exception;
 }

@@ -18,29 +18,28 @@ public class TecnologyServiceImp implements TecnologyService {
 	private TecnologyRepository tecnologyRepository;
 	
 	@Override
-	public Tecnology save (Tecnology tecnology) {
+	public Tecnology save (Tecnology tecnology) throws Exception{
 		return tecnologyRepository.save(tecnology);
 	}
 
 	@Override
-	public List<Tecnology> findAll() {
+	public List<Tecnology> findAll() throws Exception{
 		return tecnologyRepository.findAll();
 	}
 
 	@Override
-	public Page<Tecnology> findAll(Pageable pageable) {
+	public Page<Tecnology> findAll(Pageable pageable) throws Exception{
 		return null;
 	}
 
 	@Override
-	public Optional<Tecnology> findById(Long idTecnology) {
+	public Optional<Tecnology> findById(Long idTecnology) throws Exception{
 		return tecnologyRepository.findById(idTecnology);
 	}
 
 	@Override
-	public void deleteUserById(Long idTecnology) {
+	public void deleteUserById(Long idTecnology) throws Exception{
 		tecnologyRepository.deleteById(idTecnology);
-		
 	}
 	
 }

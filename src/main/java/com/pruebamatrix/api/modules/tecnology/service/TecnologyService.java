@@ -9,14 +9,14 @@ import com.pruebamatrix.api.modules.tecnology.model.Tecnology;
 
 public interface TecnologyService {
 	
-	public Iterable<Tecnology> findAll();
+	public Iterable<Tecnology> findAll() throws Exception;
 	
-	public Page<Tecnology> findAll(Pageable pageable);
+	public Page<Tecnology> findAll(Pageable pageable) throws Exception;
 	
-	public Optional<Tecnology> findById(Long idTecnology);
+	public Optional<Tecnology> findById(Long idTecnology) throws Exception;
 	
-	public Tecnology save(Tecnology game);
+	public Tecnology save(Tecnology game) throws Exception;
 	
-	public void deleteUserById(Long idTecnology);
+	public void deleteUserById(Long idTecnology) throws Exception;
 	
 }

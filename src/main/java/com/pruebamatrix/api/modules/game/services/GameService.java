@@ -1,23 +1,21 @@
 package com.pruebamatrix.api.modules.game.services;
 
-import java.util.Optional;
-
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import java.util.List;
+import java.util.Map;
 
 import com.pruebamatrix.api.modules.game.model.Game;
 import com.pruebamatrix.api.modules.game.model.GameRequest;
 
 public interface GameService {
 
-	public Iterable<Game> findAll();
+	public Game save(GameRequest game) throws Exception;
 	
-	public Page<Game> findAll(Pageable pageable);
+	public void deleteUserById(Long idGame) throws Exception;
 	
-	public Optional<Game> findById(Long idGame);
+	public List<Game> getAllGames() throws Exception;
 	
-	public Game save(GameRequest game);
+	public Game editValue(Game game) throws Exception;
 	
-	public void deleteUserById(Long idGame);
+	public Map<String,Object> getMostRentedGame() throws Exception;
 	
 }

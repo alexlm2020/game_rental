@@ -15,12 +15,12 @@ public class RentalGameServiceImp implements RentalGameService{
 	private RentalGameRepository rentaGameRepository;
 	
 	@Override
-	public RentalGame save(RentalGame rentalGame) {
+	public RentalGame save(RentalGame rentalGame) throws Exception{
 		return rentaGameRepository.save(rentalGame);
 	}
 
 	@Override
-	public List<RentalGame> getRentalGame(Long idRental) {
+	public List<RentalGame> getRentalGame(Long idRental) throws Exception{
 		return rentaGameRepository.getRentalGameById(idRental);
 	}
 

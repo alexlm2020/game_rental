@@ -13,7 +13,7 @@ public class GameTecnologyServiceImp implements GameTecnologyService {
 	private GameTecnologyRepository gameTecnologyRepository;
 	
 	@Override
-	public GameTecnology save(GameTecnology gameTecnology) {
+	public GameTecnology save(GameTecnology gameTecnology) throws Exception{
 		return gameTecnologyRepository.save(gameTecnology);
 	}
 

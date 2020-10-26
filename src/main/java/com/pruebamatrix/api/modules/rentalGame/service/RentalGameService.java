@@ -6,8 +6,8 @@ import com.pruebamatrix.api.modules.rentalGame.model.RentalGame;
 
 public interface RentalGameService {
 
-	public RentalGame save (RentalGame rentalGame);
+	public RentalGame save (RentalGame rentalGame) throws Exception;
 	
-	public List<RentalGame> getRentalGame(Long idRental);
+	public List<RentalGame> getRentalGame(Long idRental) throws Exception;
 	
 }

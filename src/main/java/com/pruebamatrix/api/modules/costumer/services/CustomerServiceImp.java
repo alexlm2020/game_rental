@@ -1,6 +1,7 @@
 package com.pruebamatrix.api.modules.costumer.services;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,39 +27,43 @@ public class CustomerServiceImp implements CustomerService{
 
 	@Override
 	@Transactional(readOnly = true)
-	public Page<Customer> findAll(Pageable pageable) {
-		
+	public Page<Customer> findAll(Pageable pageable) throws Exception{	
 		return costumerRepository.findAll(pageable);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public Optional<Customer> findById(Long id) {
+	public Optional<Customer> findById(Long id) throws Exception{
 		
 		return costumerRepository.findById(id);
 	}
 	
 	@Override
 	@Transactional(readOnly = true)
-	public List<Customer> getAllCostumers() {		
+	public List<Customer> getAllCostumers() throws Exception{		
 		return costumerRepository.getAllCostumers();
 	}
 
 	@Override
 	@Transactional
-	public Customer save(Customer costumer) {		
+	public Customer save(Customer costumer) throws Exception{		
 		return costumerRepository.save(costumer);
 	}
 
 	@Override
 	@Transactional
-	public void deleteUserById(Long id) {	
+	public void deleteUserById(Long id) throws Exception{	
 		costumerRepository.deleteById(id);
 	}
 
 	@Override
-	public Customer getCostumerByIdentification(String identification) {
+	public Customer getCostumerByIdentification(String identification) throws Exception{
 		return costumerRepository.getCostumerByIdentification(identification);
+	}
+
+	@Override
+	public Map<String, Object> getMostFrequentCustomer() throws Exception {
+		return costumerRepository.getMostFrequentCustomer();
 	}
 
 }
