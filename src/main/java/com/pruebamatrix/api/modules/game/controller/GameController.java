@@ -44,7 +44,31 @@ public class GameController {
 	@PostMapping("/getMostRentedGame")
 	public ResponseEntity<?> getMostRentedGame () throws Exception{
 		Map<String,Object> oGame = gameServiceImp.getMostRentedGame();
-		if ( oGame != null && Integer.parseInt(oGame.get("cant").toString()) == 0) {
+		if ( Integer.parseInt(oGame.get("cant").toString()) == 0) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(oGame);
+	}
+	
+	/***
+	 * 
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	@PostMapping("/getGamesRental")
+	public ResponseEntity<?> getGamesRental (@RequestBody Map<String,String> request) throws Exception{
+		List<Map<String,Object>> oGames = gameServiceImp.getGamesRental(request);
+		if ( oGames.size() == 0) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(oGames);
+	}
+	
+	@PostMapping("/getLessRentedGame")
+	public ResponseEntity<?> getLessRentedGame (@RequestBody Map<String,String> request) throws Exception{
+		Map<String,Object> oGame = gameServiceImp.getLessRentedGame(Integer.parseInt(request.get("age").toString()));
+		if ( oGame == null) {
 			return ResponseEntity.notFound().build();
 		}
 		return ResponseEntity.ok(oGame);

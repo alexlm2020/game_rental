@@ -18,4 +18,6 @@ public interface GameService {
 	
 	public Map<String,Object> getMostRentedGame() throws Exception;
 	
+	public Map<String,Object> getLessRentedGame(Integer age) throws Exception;
+	
 }
