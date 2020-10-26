@@ -12,7 +12,7 @@ import com.pruebamatrix.api.modules.game.model.Game;
 import com.pruebamatrix.api.modules.game.model.GameRequest;
 import com.pruebamatrix.api.modules.game.repository.GameRepository;
 import com.pruebamatrix.api.modules.gameTecnology.model.GameTecnology;
-import com.pruebamatrix.api.modules.gameTecnology.repository.GameTecnologyRepository;
+import com.pruebamatrix.api.modules.gameTecnology.service.GameTecnologyService;
 
 @Service
 public class GameServiceImp implements GameService{
@@ -21,7 +21,7 @@ public class GameServiceImp implements GameService{
 	private GameRepository gameRepository;
 	
 	@Autowired
-	private GameTecnologyRepository gameTecnologyRepository;
+	private GameTecnologyService gameTecnologyService;
 	
 	@Autowired
 	private UtilsService utilsService;
@@ -49,7 +49,7 @@ public class GameServiceImp implements GameService{
 			gameTec.setIdTecnology(gt.getIdTecnology());
 			gameTec.setCant(gt.getCant());
 			
-			gameTecnologyRepository.save(gameTec);	
+			gameTecnologyService.save(gameTec);	
 		}
 
 		return gameResponse;
@@ -74,6 +74,18 @@ public class GameServiceImp implements GameService{
 	@Override
 	public Map<String, Object> getMostRentedGame() throws Exception {
 		return gameRepository.getMostRentedGame();
+	}
+	
+	public List<Map<String, Object>> getGamesRental(Map<String, String> request) throws Exception {	
+		return gameTecnologyService.getGamesRental((request.get("hero")!= null? request.get("hero").toString() : ""), 
+				(request.get("trademark")!= null? request.get("trademark").toString(): ""), 
+				(request.get("director")!= null? request.get("director").toString(): ""));
+	}
+
+	@Override
+	public Map<String, Object> getLessRentedGame(Integer age) throws Exception {
+		Integer age10 = age + 10;
+		return gameRepository.getLessRentedGame(age, age10);
 	}
 
 }
