@@ -1,11 +1,11 @@
 package com.pruebamatrix.api.modules.game.services;
 
-import java.util.Optional;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.pruebamatrix.api.Utils.service.UtilsService;
 import com.pruebamatrix.api.modules.game.model.Game;
@@ -25,28 +25,10 @@ public class GameServiceImp implements GameService{
 	
 	@Autowired
 	private UtilsService utilsService;
-	
-	
-	@Override
-	public Iterable<Game> findAll() {
-		
-		return null;
-	}
 
+	@Transactional(rollbackFor={Exception.class})
 	@Override
-	public Page<Game> findAll(Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Optional<Game> findById(Long idGame) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Game save(GameRequest gameRequest) {
+	public Game save(GameRequest gameRequest) throws Exception {
 		
 		Game game = new Game();
 		game.setName(gameRequest.getName());
@@ -74,9 +56,24 @@ public class GameServiceImp implements GameService{
 	}
 
 	@Override
-	public void deleteUserById(Long idGame) {
-		// TODO Auto-generated method stub
-		
+	public void deleteUserById(Long idGame) throws Exception {
+		gameRepository.deleteById(idGame);
+	}
+
+	@Override
+	public List<Game> getAllGames() {
+		return gameRepository.findAll();
+	}
+
+	@Override
+	public Game editValue(Game game) throws Exception {
+		game.setLastUpdate(utilsService.getTime());
+		return gameRepository.save(game);
+	}
+
+	@Override
+	public Map<String, Object> getMostRentedGame() throws Exception {
+		return gameRepository.getMostRentedGame();
 	}
 
 }
